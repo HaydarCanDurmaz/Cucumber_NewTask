@@ -31,7 +31,7 @@ public class Parent {
 
     public void verifyContainsTextFunction(WebElement element, String value){
         wait.until(ExpectedConditions.textToBePresentInElement(element, value));
-       Assert.assertTrue(element.getText().contains("Techno Study Intern School"));
+        Assert.assertTrue(element.getText().toLowerCase().contains(value.toLowerCase()),"bo such TEXT");
         new Actions(GWD.getDriver()).sendKeys(Keys.ESCAPE).perform();
         // acık diolog kutusu varsa kapatsın
     }
@@ -50,5 +50,4 @@ public class Parent {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 }
-
 

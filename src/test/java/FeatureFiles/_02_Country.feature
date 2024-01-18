@@ -1,5 +1,5 @@
 Feature: Country Functionality
-  @SmokeTest
+
 
   Scenario: Crate Country
     Given Navigate to Campus
