@@ -11,9 +11,15 @@
       Then User should login succesfully
       And Navigate to CizitenShip page
 
-    Scenario: New Cizitenship
-      When User a CizitenShip name as "fer232" short name as "232or"
+    Scenario Outline: New Cizitenship
+      When User a CizitenShip name as "<name>" short name as "<short>"
       Then Success message should be displayed
 
-      When User a CizitenShip name as "fer232" short name as "232or"
+      When User a CizitenShip name as "<name>" short name as "<short>"
       Then Already exist  message should be displayed
+      Examples:
+        | name    | short   |
+        | zorbeY1 | zorbeY1 |
+        | zorbeY2 | zorbeY2 |
+        | zorbeY3 | zorbeY3 |
+        | zorbeY4 | zorbeY4 |

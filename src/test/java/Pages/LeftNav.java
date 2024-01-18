@@ -20,4 +20,16 @@ public class LeftNav extends Parent{
 
     @FindBy(xpath = "//span[text()='Citizenships']")
     public WebElement cizitenship;
+
+    @FindBy(xpath = "//ms-search-button//button")
+    public WebElement searchButton;
+
+    @FindBy(xpath = "(//ms-delete-button//button)[1]")
+    public WebElement deleteButton;
+
+    @FindBy(xpath = "//ms-text-field[@placeholder='GENERAL.FIELD.NAME']//input")
+    public WebElement searchInput;
+
+
+
 }
