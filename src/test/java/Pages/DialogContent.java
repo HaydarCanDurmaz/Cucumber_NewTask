@@ -59,6 +59,15 @@ public class DialogContent extends Parent {
     @FindBy(xpath = "//button[@type='submit']")
     public WebElement deleteDialogBtn;
 
+    @FindBy(xpath="//ms-text-field[@formcontrolname='budgetAccountIntegrationCode']//input")
+    private WebElement integrationCode;
+
+    @FindBy(xpath="//ms-integer-field[@formcontrolname='priority']/input")
+    private WebElement priorityCode;
+
+    @FindBy(xpath="//mat-slide-toggle[@formcontrolname='active']")
+    private WebElement toggleBar;
+
 
     public WebElement getWebElement(String addButtonn){
 
@@ -70,6 +79,10 @@ public class DialogContent extends Parent {
             case "codeInput" : return codeInput;
             case "deleteButton" : return deleteButton;
             case "deleteDialogBtn" : return deleteDialogBtn;
+            case "integrationCode" : return integrationCode;
+            case "priorityCode" : return priorityCode;
+            case "toggleBar" : return toggleBar;
+
 
 
         }

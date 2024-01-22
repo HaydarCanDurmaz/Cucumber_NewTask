@@ -51,3 +51,29 @@ Feature: DataTable Functionality
       | zoRBey25 |
 
     Then Success message should be displayed
+
+  Scenario: Fee Functionality
+    And Click on the element in LeftNav
+      | setup      |
+      | parameters |
+      | fees       |
+
+    And Click on the element in Dialog
+      | addButton |
+
+    And User sending the keys in Dialog Content
+      | nameInput       | ZoRbeY25 |
+      | codeInput       | 342512   |
+      | integrationCode | 25er34is |
+      | priorityCode    | 12212    |
+
+    And Click on the element in Dialog
+      | toggleBar  |
+      | saveButton |
+
+    Then Success message should be displayed
+
+    And User delete item from Dialog Content
+      | ZoRbeY25 |
+
+    Then Success message should be displayed
