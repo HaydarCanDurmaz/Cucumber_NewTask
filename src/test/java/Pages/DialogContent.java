@@ -60,6 +60,20 @@ public class DialogContent extends Parent {
     public WebElement deleteDialogBtn;
 
 
+    public WebElement getWebElement(String addButtonn){
+
+        switch (addButtonn)
+        {
+            case "addButton" : return addButton;
+            case "saveButton" : return saveButton;
+            case "nameInput" : return nameInput;
+            case "codeInput" : return codeInput;
+
+
+        }
+        return null;
+    }
+
     public void deleteItem(String searchText) {
         sendKeysFunction(searchInput, searchText);
         clickFunction(searchButton);
@@ -75,6 +89,7 @@ public class DialogContent extends Parent {
         clickFunction(deleteDialogBtn);
 
     }
+
 
 
 }
