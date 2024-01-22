@@ -17,9 +17,13 @@
 
       When User a CizitenShip name as "<name>" short name as "<short>"
       Then Already exist  message should be displayed
+
+      When User delete the "<name>"
+      Then Success message should be displayed
+
       Examples:
-        | name    | short   |
-        | zorbeY1 | zorbeY1 |
-        | zorbeY2 | zorbeY2 |
-        | zorbeY3 | zorbeY3 |
-        | zorbeY4 | zorbeY4 |
+        | name    | short  |
+        | zorb1h1 | eY1as  |
+        | zor2h2  | zY12ds |
+        | zorY33n | zo43as |
+        | zbeY4f4 | 23zY4ds |

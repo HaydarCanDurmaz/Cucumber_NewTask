@@ -31,4 +31,10 @@ public class _04_CizitenshipSteps {
     public void alreadyExistMessageShouldBeDisplayed() {
         dc.verifyContainsTextFunction(dc.alreadyExist, "already");
     }
+
+    @When("User delete the {string}")
+    public void userDeleteThe(String searchText) {
+        dc.deleteItem(searchText);
+
+    }
 }
