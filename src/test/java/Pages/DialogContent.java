@@ -68,6 +68,8 @@ public class DialogContent extends Parent {
             case "saveButton" : return saveButton;
             case "nameInput" : return nameInput;
             case "codeInput" : return codeInput;
+            case "deleteButton" : return deleteButton;
+            case "deleteDialogBtn" : return deleteDialogBtn;
 
 
         }

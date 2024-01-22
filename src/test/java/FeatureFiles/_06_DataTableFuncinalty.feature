@@ -16,11 +16,16 @@ Feature: DataTable Functionality
       | addButton |
 
     And User sending the keys in Dialog Content
-      | nameInput | zorBEY |
-      | codeInput | Drmz25 |
+      | nameInput | zorBEY1 |
+      | codeInput | Drmz251 |
 
     And Click on the element in Dialog
       | saveButton |
+
+    Then Success message should be displayed
+
+    And User delete item from Dialog Content
+      | zorBEY1 |
 
     Then Success message should be displayed
 
@@ -35,9 +40,14 @@ Feature: DataTable Functionality
       | addButton |
 
     And User sending the keys in Dialog Content
-      | nameInput | isvcx3lk13 |
+      | nameInput | zoRBey25 |
 
     And Click on the element in Dialog
       | saveButton |
+
+    Then Success message should be displayed
+
+    And User delete item from Dialog Content
+      | zoRBey25 |
 
     Then Success message should be displayed
