@@ -51,7 +51,7 @@ public class DialogContent extends Parent {
     public WebElement searchButton;
 
     @FindBy(xpath = "(//ms-delete-button//button)[1]")
-    public WebElement deleteButton;
+    public WebElement deleteImageBtn;
 
     @FindBy(xpath = "//ms-text-field[@placeholder='GENERAL.FIELD.NAME']//input")
     public WebElement searchInput;
@@ -68,6 +68,18 @@ public class DialogContent extends Parent {
     @FindBy(xpath="//mat-slide-toggle[@formcontrolname='active']")
     private WebElement toggleBar;
 
+    @FindBy(xpath="//mat-select//span[text()='Academic Period']")
+    private WebElement academicPeriod;
+
+    @FindBy(xpath="(//mat-option/span)[1]")
+    private WebElement academicPeriod1;
+
+    @FindBy(xpath="(//span[text()='Grade Level'])[1]")
+    private WebElement gradeLevel;
+
+    @FindBy(xpath="(//mat-option//span)[2]")
+    private WebElement gradeLevel2;
+
 
     public WebElement getWebElement(String addButtonn){
 
@@ -77,11 +89,15 @@ public class DialogContent extends Parent {
             case "saveButton" : return saveButton;
             case "nameInput" : return nameInput;
             case "codeInput" : return codeInput;
-            case "deleteButton" : return deleteButton;
+            case "deleteButton" : return deleteImageBtn;
             case "deleteDialogBtn" : return deleteDialogBtn;
             case "integrationCode" : return integrationCode;
             case "priorityCode" : return priorityCode;
             case "toggleBar" : return toggleBar;
+            case "academicPeriod" : return academicPeriod;
+            case "academicPeriod1" : return academicPeriod1;
+            case "gradeLevel" : return gradeLevel;
+            case "gradeLevel2" : return gradeLevel2;
 
 
 
@@ -89,18 +105,17 @@ public class DialogContent extends Parent {
         return null;
     }
 
-    public void deleteItem(String searchText) {
-        sendKeysFunction(searchInput, searchText);
-        clickFunction(searchButton);
-
-//fuse-progress-bar/*   gözüküyor
+    public void deleteItem(String searchText){
+        sendKeysFunction(searchInput,searchText);
+        clickFunction(searchButton);   //fuse-progress-bar/*   gözüküyor
         //beklet
         //1. StaleElemetn hatası verdi : erken buldum tez kaybettim
         wait.until(ExpectedConditions.elementToBeClickable(searchButton));
 
         //fuse-progress-bar/*    bu 0 olana kadar beklet
-       // wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//fuse-progress-bar/*"), 0));
-        clickFunction(deleteButton);
+        //wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//fuse-progress-bar/*") , 0));
+
+        clickFunction(deleteImageBtn);
         clickFunction(deleteDialogBtn);
 
     }
