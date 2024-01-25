@@ -1,5 +1,6 @@
 Feature: Datatable Case
 
+
   Scenario: UserList
 
     When Write username "zorbey"
