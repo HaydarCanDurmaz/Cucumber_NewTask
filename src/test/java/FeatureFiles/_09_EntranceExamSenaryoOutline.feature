@@ -13,7 +13,7 @@ Feature: Scenario Exam functionality
   Background:
     Given Navigate to Campus
     When Enter username and password and click login button
-    Then User should login succesfullyE
+    Then User should login succesfully
 
   Scenario Outline: Exam EnterCase Scenario Add
 
@@ -29,6 +29,19 @@ Feature: Scenario Exam functionality
       | nameInput       | <ExamName>             |
       | codeInput       | <AcademicPeriodOption> |
       | integrationCode | <GradeLevelOption>     |
+
+    And Click on the element in Dialog
+      | toggleBar  |
+      | saveButton |
+
+    Then Success message should be displayed
+
+    And User delete item from Dialog Content
+      | <ExamName> |
+
+    Then Success message should be displayed
+
+
     Examples:
       | ExamName        | AcademicPeriodOption | GradeLevelOption |
       | Math exam is1   | academicPeriod1      | gradeLevel2      |
