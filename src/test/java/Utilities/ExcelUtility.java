@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -51,30 +52,73 @@ public class ExcelUtility {
 
     }
     public static void writeExcel(String path, Scenario scenario , String browserName){
-        XSSFWorkbook workbook=new XSSFWorkbook();
-        XSSFSheet sheet=workbook.createSheet("CampusTest");
+        // burada her bir senaryonun sonucu excel yazılacak
+        File file=new File(path);
+        // eğer dosya yok ise aşağıdaki bölüm çalışşsın
+        if (!file.exists()){ // dosya yok ise
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("campusTest");
 
-        Row row=sheet.createRow(0);
+            Row yeniSatir = sheet.createRow(0);
 
-        Cell cell=row.createCell(0);
-        cell.setCellValue(scenario.getName());
+            Cell yeniHucre = yeniSatir.createCell(0);
+            yeniHucre.setCellValue(scenario.getName());
 
-        cell=row.createCell(1);
-        cell.setCellValue(scenario.getStatus().toString());
+            yeniHucre = yeniSatir.createCell(1);
+            yeniHucre.setCellValue(scenario.getStatus().toString()); // fail veya pass
 
-        cell=row.createCell(2);
-        cell.setCellValue(browserName);
+            yeniHucre = yeniSatir.createCell(2);
+            yeniHucre.setCellValue(browserName);
 
-        try {
-            FileOutputStream outputStream=new FileOutputStream(path);
-            workbook.write(outputStream);
-            workbook.close();
-            outputStream.close();
+            //file save
+            try {
+                FileOutputStream outputStream = new FileOutputStream(path);
+                workbook.write(outputStream);
+                workbook.close();
+                outputStream.close();
+            } catch (Exception e) {
 
-        }catch (Exception e){
+            }
+        }
+        else{// eğer dosya var ise
+
+            Sheet sheet=null;
+            Workbook workbook =null;
+            FileInputStream inputStream=null;
+            try {
+                inputStream = new FileInputStream(path);
+                workbook = WorkbookFactory.create(inputStream);
+                sheet = workbook.getSheet("campusTest");
+            }catch(Exception e){
+            }
+
+            Row yeniSatir = sheet.createRow( sheet.getPhysicalNumberOfRows() );  // en alt boş satırı aç
+
+            Cell yeniHucre = yeniSatir.createCell(0);
+            yeniHucre.setCellValue(scenario.getName());
+
+            yeniHucre = yeniSatir.createCell(1);
+            yeniHucre.setCellValue(scenario.getStatus().toString()); // fail veya pass
+
+            yeniHucre = yeniSatir.createCell(2);
+            yeniHucre.setCellValue(browserName);
+
+            //file save
+            try {
+                inputStream.close(); // okuma modu kapatıldı
+                FileOutputStream outputStream = new FileOutputStream(path); // yazma moduna geçildi
+                workbook.write(outputStream);
+                workbook.close();
+                outputStream.close();
+            } catch (Exception e) {
+
+            }
 
         }
 
 
     }
+
+
+
 }

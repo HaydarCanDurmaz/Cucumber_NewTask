@@ -17,9 +17,9 @@ public class Hooks {
 
         if (senaryo.isFailed()){
             // EXTEnd REpot da çalıştırıyorr
-           TakesScreenshot ts= (TakesScreenshot)GWD.getDriver();
-          final byte[] hafizadakihali=ts.getScreenshotAs(OutputType.BYTES);
-           senaryo.attach(hafizadakihali,"image/png","screenshot name");
+         //  TakesScreenshot ts= (TakesScreenshot)GWD.getDriver();
+         // final byte[] hafizadakihali=ts.getScreenshotAs(OutputType.BYTES);
+         //  senaryo.attach(hafizadakihali,"image/png","screenshot name");
         }
 
         GWD.quitDriver();
