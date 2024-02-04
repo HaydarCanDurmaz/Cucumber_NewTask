@@ -1,10 +1,12 @@
 package Utilities;
 
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
+import io.cucumber.java.Scenario;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,6 +48,33 @@ public class ExcelUtility {
         }
 
         return tablo;
+
+    }
+    public static void writeExcel(String path, Scenario scenario , String browserName){
+        XSSFWorkbook workbook=new XSSFWorkbook();
+        XSSFSheet sheet=workbook.createSheet("CampusTest");
+
+        Row row=sheet.createRow(0);
+
+        Cell cell=row.createCell(0);
+        cell.setCellValue(scenario.getName());
+
+        cell=row.createCell(1);
+        cell.setCellValue(scenario.getStatus().toString());
+
+        cell=row.createCell(2);
+        cell.setCellValue(browserName);
+
+        try {
+            FileOutputStream outputStream=new FileOutputStream(path);
+            workbook.write(outputStream);
+            workbook.close();
+            outputStream.close();
+
+        }catch (Exception e){
+
+        }
+
 
     }
 }

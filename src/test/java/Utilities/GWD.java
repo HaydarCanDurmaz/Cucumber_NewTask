@@ -2,20 +2,16 @@ package Utilities;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.time.Duration;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class GWD {
-    private static ThreadLocal<WebDriver> threadDriver=new ThreadLocal<>();
-    public static ThreadLocal<String> threadBrowserName=new ThreadLocal<>();
+    private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    public static ThreadLocal<String> threadBrowserName = new ThreadLocal<>();
 
     //threadDriver.get() -> bulunduğum thread deki driver ı al
     //threadDriver.set(driver) -> bulunduğum threade driver set et
@@ -25,16 +21,23 @@ public class GWD {
         Locale.setDefault(new Locale("EN"));
         System.setProperty("user.language", "EN");
 
-        if (threadBrowserName.get()==null) // xml den çalıştırlmayan diğer bölümler
+        if (threadBrowserName.get() == null) // xml den çalıştırlmayan diğer bölümler
             threadBrowserName.set("edge"); // için default chrome olsun
 
-        if (threadDriver.get()==null) { // ilk kez 1 defa çalışssın
+        if (threadDriver.get() == null) { // ilk kez 1 defa çalışssın
 
-            switch (threadBrowserName.get()){
-                case "firefox": threadDriver.set(new FirefoxDriver()); break; // ilgili threade bir driver set ettim
-                case "safari":  threadDriver.set(new SafariDriver());  break; // ilgili threade bir driver set ettim
-                case "edge":    threadDriver.set(new EdgeDriver());    break; // ilgili threade bir driver set ettim
-                default :  threadDriver.set(new ChromeDriver()); // ilgili threade bir driver set ettim
+            switch (threadBrowserName.get()) {
+                case "firefox":
+                    threadDriver.set(new FirefoxDriver());
+                    break; // ilgili threade bir driver set ettim
+                case "safari":
+                    threadDriver.set(new SafariDriver());
+                    break; // ilgili threade bir driver set ettim
+                case "edge":
+                    threadDriver.set(new EdgeDriver());
+                    break; // ilgili threade bir driver set ettim
+                default:
+                    threadDriver.set(new ChromeDriver()); // ilgili threade bir driver set ettim
             }
         }
 
@@ -52,15 +55,22 @@ public class GWD {
         }
 
         //driver kapat
-        if (threadDriver.get()!=null) { //driver var ise
+        if (threadDriver.get() != null) { //driver var ise
             threadDriver.get().quit();
 
-            WebDriver driver=threadDriver.get(); // direk eşitleme yapamadığım için, içindekini al
-            driver=null;  // null a eşitle
+            WebDriver driver = threadDriver.get(); // direk eşitleme yapamadığım için, içindekini al
+            driver = null;  // null a eşitle
 
             threadDriver.set(driver); // kendisine null olarak ver, bu hatta bir dolu driver yok
         }
     }
+    public static void ThreadBrowserSet(String browser){
+        threadBrowserName.set(browser);
+    }
+    public static String ThreadBrowserGet(){
+       return threadBrowserName.get();
+    }
+
 
 
 }
