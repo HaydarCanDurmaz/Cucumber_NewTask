@@ -24,4 +24,26 @@ public class _01_GetAllRowColumn extends _JDBC_Parent {
 
         }
     }
+    @Test
+    public void test2() throws SQLException {
+        // language tablosundaki tüm satırları ve tüm sütunları yazdırınız,
+        // aynı mysql sonuç ekranında olduğu gibi
+
+        ResultSet rs = statement.executeQuery("select * from language"); // data + metdata
+        ResultSetMetaData rsmd = rs.getMetaData(); // data dışındaki bilgileri: kolon sayısı,ismi,tipleri
+
+        for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+            System.out.print(rsmd.getColumnName(i) + "\t");
+        }
+        System.out.println();
+
+        while (rs.next()) {
+            for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+                System.out.print(rs.getString(i) + "\t");
+            }
+
+            System.out.println();
+        }
+
+    }
 }
